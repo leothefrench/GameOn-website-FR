@@ -57,10 +57,10 @@
           <span class="close"></span>
           <div class="modal-body">
             <form
-              id="form" 
+              id="form"
               name="reserve"
               action="index.html"
-              method="get"
+              method=""
               onsubmit="return validate();"
             >
               <div
@@ -73,7 +73,9 @@
                   name="first"
                   minlength="2"
                   required  
-                /><br>
+                />
+                <small></small>
+                <br>
               </div>
               <div
                 class="formData">
@@ -84,7 +86,9 @@
                   id="last"
                   name="last"
                   required
-                /><br>
+                />
+                <small></small> 
+                <br>
               </div>
               <div
                 class="formData">
@@ -94,7 +98,9 @@
                   type="email"
                   id="email"
                   name="email"
-                /><br>
+                />
+                <small></small>      
+                <br>
               </div>
               <div
                 class="formData">
@@ -207,6 +213,7 @@
                 type="submit"
                 class="button"
                 value="C'est parti"
+                onclick="mySubmit()"
               />
             </form>
           </div>
