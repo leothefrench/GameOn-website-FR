@@ -20,8 +20,7 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-
-// Issue 1 - Add Function Close Modal
+/* ********** Issue 1 - ADD FUNCTION CLOSE MODAL ********** */
 
 // Variable constant targeting the class with name close (span tag)
 const closeModal = document.querySelector('.close');
@@ -31,11 +30,13 @@ closeModal.addEventListener('click', () => {
       modalbg.style.display = 'none';
 });
 
-// Issue 2 - Entries Implementation
+//POSER VARIABLES ICI POUR CHECK AVANT SUBMIT BOUTON
 
-//POSER VARIABLES
 
-// Submit button
+
+/* ********** ISSUES 2 - ENTRIES IMPLEMENTATION ********** */ 
+
+// SUBMIT BUTTON
 
 function mySubmit() {
   document.getElementById('form').submit()
@@ -43,35 +44,35 @@ function mySubmit() {
 
 // Correction of for label and id input in the File index.html - Done 
 
-// Vérification 2 lettres minimum dans l'input first
+/* *********** VERIFICATION 2 LETTRES MINI DANS L'INPUT FIRST ********* */
 
-let form = document.querySelector('#form') // id='form' added in index.html for the targeting
+let form = document.querySelector('#form') // id='form' added in index.html for the targeting the form
 
-form.first.addEventListener('change', function() {
+form.first.addEventListener('mouseout', function() {
   checkFirst(this)
 })
 
 const checkFirst = function(inputFirst) {
  
   let firstRegExp = new RegExp('^[a-zA-Z]{2,}$','g') // Création regExp pour vérification des 2 lettres minimum dans l'input first
-  let testFirst = firstRegExp.test(inputFirst.value)
+  let testFirst = firstRegExp.test(inputFirst.value) // Test de la valeur de l'input dans first
 
-  // console.log(testFirst)
-
-  // Message d'erreur lorsque l'entrée n'est pas correcte [ ISSUE 3]
+/* ********** ISSUE 3 - MESSAGE ERREUR SI ENTREE INCORRECTE ********** */
 let smallFirst = inputFirst.nextElementSibling;
 
   if(!testFirst) {
     smallFirst.innerText = "Veuillez entrer 2 caractères ou plus pour le champ du nom."
+    return false;
   }
   else {
     smallFirst.innerText = ''
+    return true
   }
 }
 
-// Vérification 2 lettres minimum dans l'input last
+/* *********** VERIFICATION 2 LETTRES MINI DANS L'INPUT LAST ********* */
 
-form.last.addEventListener('change', function() {
+form.last.addEventListener('mouseout', function() {
   checkLast(this)
 })
 
@@ -79,8 +80,6 @@ const checkLast = function(inputLast) {
  
   let lastRegExp = new RegExp('^[a-zA-Z]{2,}$','g') // Création regExp pour vérification des 2 lettres minimum dans l'input last
   let testLast = lastRegExp.test(inputLast.value)
-
-  // console.log(testLast)
 
   // Message d'erreur lorsque l'entrée n'est pas correcte [ ISSUE 3]
   let smallLast = inputLast.nextElementSibling;
@@ -93,63 +92,94 @@ const checkLast = function(inputLast) {
   }
 }
 
-/* ********** VERIFICATION EMAIL VALID ********** */
+/* ********** VERIFICATION EMAIL VALID ********** */        
 
-form.email = addEventListener('change', function() {
-  checkEmail(this)
+form.email.addEventListener('input', function() {
+  validationEmail(this)
 })
 
-console.log(form.email)
+function validationEmail() {
+  let email = document.getElementById('email').value;
+  let patternEmail = /^([a-zA-Z0-9\.-_]+)@([a-zA-Z0-9\.-_])+.([a-z]+)?$/;
+  let smallEmail = document.getElementById('smallEmail');
 
-const checkEmail = function(inputEmail) {
-  // let emailRegExp = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');
-
-  // let testEmail = emailRegExp.test(inputEmail.value)
-
-// console.log(testEmail)
-
-  let smallEmail = inputEmail.nextElementSibling;
-
-  if(inputEmail) {
-    smallEmail.innerHTML = '<strong>VALID Email</strong>';
+  if(!patternEmail.test(email)) {
+    smallEmail.innerText = 'Invalid Email'; 
+    smallEmail.style.color = 'red';
+    return false;
   }
   else {
-    smallEmail.innerHTML = '<strong>INVALID Email</strong>';
+    smallEmail.innerText = ''
+    return true;
   }
 }
 
-// vérification 1 Nombre numérique nombre de concours
+/* ********* DATE DE NAISSANCE ********** */
 
-form.quantity = addEventListener('change', function() {
+form.birthdate.addEventListener('click', function checkBirthdate() {
+
+  let dateInput = document.getElementById('birthdate')
+  let smallBirthdate = document.getElementById('smallBirthdate');
+ 
+  if(!dateInput.value) {
+    smallBirthdate.innerHTML = '<br>Entrée une date de naissance'
+  }
+  else {
+    smallBirthdate.innerHTML = ''
+  }
+})
+
+/* ********** VERIFIACTION 1 NOMBRE NUMERIQUE DE CONCOURS *********** */
+
+form.quantity.addEventListener('mousedown', () => {
   checkNumber(this)
 })
 
-const checkNumber = function(inputNumber) {
-  let inputNumberRegExp = new RegExp('^[0-9]{1,2}$', 'g')
-  let textInputNumber = inputNumberRegExp.test(inputNumber.value)
+function checkNumber() {
 
-  console.log(textInputNumber)
-}
+let quantity = form.quantity.value;
+let smallInputNumber = document.getElementById('smallQuantity')
 
-// Un Radio Bouton Sélectionné
-form.location = addEventListener('change', function() {
-  checkRadioButton(this) 
-})
-
-const checkRadioButton = function (inputLocation) {
-  if(!inputLocation.value) {
-
+  if(!quantity) {
+    smallInputNumber.innerText = 'Veuillez entrer 1 nombre.'
+    return false
+  }
+  else {
+    smallInputNumber.innerText = ''
+    return true
   }
 }
 
-// Case Conditions Générales doit-être cochée
-// const generalCondition = document.getElementsByClassName('checkbox-icon')
+/* *********** VERIFICATION RADIO BOUTON SELECTIONNE *********** */
 
-// generalCondition.addEventListener('click', function() {
+let btnsRadio = document.querySelectorAll('.radio');
+let selectedRadioButton;
 
-// })
+/* Transformer une NodeList en Array */
+let btnsRadioArr = Array.from(btnsRadio);
 
-/* ************* VERIFICATION DATE DE NAISSANCE ********** */
-// form.birthdate = addEventListener('') {
+let spanRadio =  document.getElementById('spanRadio')
 
-// }
+btnsRadioArr.forEach(checkRadio)
+
+function checkRadio(button) {
+  if(button.checked) {
+    selectedRadioButton = button;
+    return selectedRadioButton;
+  }
+}
+
+/* *********** CASE CONDITIONS GENERALES DOIT-ÊTRE COCHEE *********** */
+
+let checkGeneralCondition = document.getElementById('checkbox1')
+let smallCheck = document.getElementById('checkbox1Invalid');
+
+checkGeneralCondition.addEventListener('click', () => {
+
+  if(checkGeneralCondition.checked !== true) {
+    smallCheck.innerHTML = '<br>Accepté les conditions générales'
+  } else {
+    smallCheck.innerHTML = ''
+  }
+})
+
