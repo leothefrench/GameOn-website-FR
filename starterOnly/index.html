@@ -72,7 +72,6 @@
                   id="first"
                   name="first"
                   minlength="2"
-                  required  
                 />
                 <small></small>
                 <br>
@@ -85,8 +84,10 @@
                   type="text"
                   id="last"
                   name="last"
+                  minlength="2"  
                   required
                 />
+                <!-- I added minlength and requires attribute-->
                 <small></small> 
                 <br>
               </div>
@@ -219,11 +220,11 @@
                 <br>
               </div>
               <input
+                id="btnValid"
                 class="btn-submit"
                 type="submit"
                 class="button"
                 value="C'est parti"
-                onclick="mySubmit()"
               />
             </form>
           </div>
