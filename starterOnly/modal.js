@@ -104,7 +104,8 @@ email.addEventListener('input', function() {
 
 function validationEmail() {
   let emailValue = email.value;   // Valeur de l'input email
-  let patternEmail = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$') // Création RegExp pour email input
+  // let patternEmail = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$') // Création RegExp pour email input
+  let patternEmail = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/i) // Création RegExp pour email input
   let smallEmail = document.getElementById('smallEmail');
 
   if(!patternEmail.test(emailValue)) {                 
