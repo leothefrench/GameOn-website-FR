@@ -50,7 +50,7 @@ first.addEventListener('change', function() {
 })
 
 const checkFirst = function(inputFirst) {
-  let regExTypeTextFirst = new RegExp('^[a-zA-Z]{2,}$','g') // Création regExp pour vérification des 2 lettres minimum dans l'input first
+  let regExTypeTextFirst = new RegExp('^[a-zA-Z]{2,}$','g') // Création regExp pour vérification des 2 lettres minimum l'input first
   let testFirst = regExTypeTextFirst.test(inputFirst.value) // Test de la valeur de l'input dans first par rapport à la RegExp
 
 /* ********** ISSUE 3 - MESSAGE ERREUR SI ENTREE INCORRECTE ********** */
@@ -205,20 +205,20 @@ function validate(event) {
   let birthdate = document.getElementById('birthdate').value
   let quantity = document.getElementById('quantity').value
   let location = document.querySelector( "input[name='location']:checked"); 
-  let checkbox1 = document.getElementById('checkbox1');
+  let checkbox1 = document.querySelector('#checkbox1:checked');
 
-  if(first.value != '' && last.value != '' 
-  && email.value != ''
+  if(first != '' && last != '' 
+  && email != ''
   && birthdate != '' 
   && quantity != '' 
   && location != null
-  && checkbox1 != true) 
+  && checkbox1 !== null)
   {
     alert(('Votre réservationé été reçue.'))    // CONFIRMATION APRES SOUMISSION DU FORMULAIRE
   } else {
     
     alert("Merci de bien remplir votre inscription"); // Alert box pour informer l'utilisateur à remplir correctement le formulaire
-    event.preventDefault()  // Stop le comportement par défaut du formulaire
+    event.preventDefault()  // Stop le comportement par défaut de l'envoi du formulaire
   }
 }
 
