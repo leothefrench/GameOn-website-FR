@@ -144,7 +144,7 @@ function checkBirthdate() {
 }
 
 /* ********** VERIFICATION 1 NOMBRE NUMERIQUE DE CONCOURS *********** */
-quantity.addEventListener('change', () => {  // Event mouseout, lorsque l'utilisateur survol on lui indique de fournir un nombre
+quantity.addEventListener('change', () => {  // Event change
   checkNumber(this)
 })
 
